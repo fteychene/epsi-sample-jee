@@ -1,4 +1,6 @@
-package fte.tests.jeerestcdi.rest;
+package fte.tests.jeerestcdi.rest.service;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -17,6 +19,11 @@ public class GreetService {
 		greet.setName(name);
 		em.persist(greet);
 		return "Hello "+ name;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Greet> getAll() {
+		return em.createQuery("Select e from Greet e").getResultList();
 	}
 
 }
